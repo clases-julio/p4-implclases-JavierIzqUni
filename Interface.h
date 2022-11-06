@@ -16,7 +16,7 @@ public:
 
 protected:
   LoginInterface * loginInterface;
-  Dashboard dashboard;
+  Dashboard * dashboard;
 };
 
 #endif

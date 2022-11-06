@@ -11,7 +11,7 @@ public:
   static LoginInterface *Create(std::string = "CLI");
   LoginInterface(); /* basic constructor */
   virtual ~LoginInterface();
-  virtual void showWelcomeMessage(int) = 0;
+  virtual void showWelcomeMessage() = 0;
   virtual void askEmployeeNumber() = 0;
   virtual void askNIF() = 0;
   bool checkUser();

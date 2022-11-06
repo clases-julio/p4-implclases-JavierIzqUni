@@ -6,9 +6,19 @@ Goal: contains the sensor class
 ---------------------------- */
 
 #include "Dashboard.h"
+#include "CLDashboard.h"
 #include <iostream>
 #include <vector>
 
 Dashboard::Dashboard(){}
+
+Dashboard *Dashboard::Create(std::string type){
+  if (type == "CLI"){
+    return new CLDashboard;
+  }
+  else {
+    return new CLDashboard;
+  }
+};
 
 Dashboard::~Dashboard(){}

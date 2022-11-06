@@ -6,12 +6,9 @@
 class CLLoginInterface : public LoginInterface{
   public:
     CLLoginInterface(); /* basic constructor */
-    void showWelcomeMessage(int);
+    void showWelcomeMessage();
     void askEmployeeNumber();
     void askNIF();
-  private:
-    void setTerminalWidth(int);
-    int terminalWidth;
 };
 
 #endif

@@ -14,8 +14,8 @@ CC = g++
 CFLAGS = -Wall -g
 .RECIPEPREFIX = >
 
-main: main.o Sensor.o CLInterface.o QtInterface.o Interface.o Dashboard.o LoginInterface.o CLLoginInterface.o User.o CLIFunctions.o Database.o
->$(CC) $(CFLAGS) -o main main.o Sensor.o CLInterface.o QtInterface.o Interface.o Dashboard.o LoginInterface.o CLLoginInterface.o User.o CLIFunctions.o Database.o
+main: main.o Sensor.o CLInterface.o QtInterface.o Interface.o Dashboard.o LoginInterface.o CLLoginInterface.o User.o CLIUtils.o Database.o CLDashboard.o CLMenuBar.o MenuBar.o
+>$(CC) $(CFLAGS) -o main main.o Sensor.o CLInterface.o QtInterface.o Interface.o Dashboard.o LoginInterface.o CLLoginInterface.o User.o CLIUtils.o Database.o CLDashboard.o CLMenuBar.o MenuBar.o
 
 main.o: main.cpp Sensor.h CLInterface.h Interface.h 
 >$(CC) $(CFLAGS) -c main.cpp
@@ -28,17 +28,23 @@ User.o: User.h
 
 LoginInterface.o: LoginInterface.h CLLoginInterface.h User.h Database.h
 
-CLIFunctions.o: CLIFunctions.h
+CLIUtils.o: CLIUtils.h
 
-CLLoginInterface.o: LoginInterface.h CLLoginInterface.h CLIFunctions.h Database.h
+CLLoginInterface.o: LoginInterface.h CLLoginInterface.h CLIUtils.h Database.h
 
-Dashboard.o: Dashboard.h
+CLDashboard.o: Dashboard.h CLDashboard.h MenuBar.h CLMenuBar.h CLIUtils.h
 
-CLInterface.o: CLInterface.h Interface.h Dashboard.h LoginInterface.h User.h
+Dashboard.o: Dashboard.h CLDashboard.h MenuBar.h
+
+CLMenuBar.o: MenuBar.h CLMenuBar.h CLIUtils.h
+
+MenuBar.o: MenuBar.h CLMenuBar.h
+
+CLInterface.o: CLInterface.h Interface.h Dashboard.h LoginInterface.h User.h CLIUtils.h
 
 QtInterface.o: QtInterface.h Interface.h Dashboard.h LoginInterface.h
 
 Interface.o: Interface.h Dashboard.h LoginInterface.h 
 
 clean:
->rm *.o main
+>rm *.o main terminalSize.txt

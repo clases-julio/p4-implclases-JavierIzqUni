@@ -7,31 +7,32 @@ Goal: contains the sensor class
 
 #include "LoginInterface.h"
 #include "CLLoginInterface.h"
-#include "CLIFunctions.h"
+#include "CLIUtils.h"
 #include <iostream>
 #include <stdio.h>
 
 CLLoginInterface::CLLoginInterface(){
 }
 
-void CLLoginInterface::showWelcomeMessage(int terminalWidth){
+void CLLoginInterface::showWelcomeMessage(){
   system("clear");
-  CLLoginInterface::setTerminalWidth(terminalWidth);
-  printCenterFromFile(terminalWidth, "CLLoginInterface.config");
+  printCenterFromFile("CLLoginInterface.config", "green");
+  std::cout << "\n\n\n";
+  printCenter("Enter your employee number: ",5);
+  std::cout << "\n\n\n";
+  printCenter("Enter your NIF: ",8);
+  std::cout << "\u001b[s";
 }
 
 void CLLoginInterface::askEmployeeNumber(){
-  printCenter(terminalWidth,"Enter your employee number: ",5);
+  std::cout << "\u001b[7C";
+  std::cout << "\u001b[3A";
   std::cin >> this->inputEmployeeNumber;
 }
 
 void CLLoginInterface::askNIF(){
-  std::cout << "\n\n\n";
-  printCenter(terminalWidth,"Enter your NIF: ",8);
+  std::cout << "\u001b[u";
   std::cin >> this->inputNIF;
+  std::cout << "\n\n\n";
 
-}
-
-void CLLoginInterface::setTerminalWidth(int terminalWidth){
-  this->terminalWidth = terminalWidth;
 }

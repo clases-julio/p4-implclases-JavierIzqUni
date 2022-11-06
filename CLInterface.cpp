@@ -8,27 +8,34 @@ Goal: contains the sensor class
 #include "CLInterface.h"
 #include "User.h"
 #include "LoginInterface.h"
-#include "CLIFunctions.h"
+#include "Dashboard.h"
+#include "CLIUtils.h"
+#include <unistd.h>
 #include <iostream>
 
 CLInterface::CLInterface(){
-  this->terminalWidth = getTerminalWidth();
+  setTerminalSize();
   loginInterface = LoginInterface::Create();
   this->loginInterface = loginInterface;
+  dashboard = Dashboard::Create();
+  this->dashboard = dashboard;
 };
 
 void CLInterface::login(){
-  this->loginInterface->showWelcomeMessage(terminalWidth);
+  this->loginInterface->showWelcomeMessage();
   this->loginInterface->askEmployeeNumber();
   this->loginInterface->askNIF();
+  usleep(2 * 1000000);
   if (this->loginInterface->checkUser()){
-    std::cout << "Login successful" << "\n";
-    std::cout << this->loginInterface->getUser().getTimestamp() << "\n";
+    printCenter("Login successful" );
+    std::cout << "\n";
   } else {
+    printCenter("Failed login\n", 0 ,"red");
+    usleep(1 * 1000000);
     login();
   }
 };
 
 void CLInterface::loadMenu(){
-  std::cout << "load Menu cli" << "\n";
+  this->dashboard->showMainMenu();
 };

@@ -8,8 +8,6 @@ class CLInterface : public Interface{
     CLInterface(); /* basic constructor */
     void login();
     void loadMenu();
-  private:
-    int terminalWidth;
 };
 
 #endif

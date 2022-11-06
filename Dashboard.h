@@ -1,29 +1,23 @@
 #include <string>
 #include <vector>
+#include "Sensor.h"
+#include "MenuBar.h"
 
 #ifndef DASHBOARD_H
 #define	DASHBOARD_H
 
 class Dashboard{
-public:
-  Dashboard(); /* basic constructor */
-  ~Dashboard();
-  std::string getId();
-  void setActive(bool);
-  bool isActive();
-  std::string getType();
-  void setArea(std::string);
-  std::string getArea();
-  std::vector<int> requestData();
-  void setMagnitude(int);
-  int getMagnitude();
+  public:
+    static Dashboard *Create(std::string = "CLI");
+    Dashboard(); /* basic constructor */
+    virtual ~Dashboard();
+    virtual void showMainMenu() = 0;
+    virtual void changeInterface() = 0;
+    void exit();
 
-private:
-  bool active;
-  std::string type;
-  std::string area;
-  std::vector <int> data;
-  int magnitude;
+  protected:
+    std::vector <Sensor> sensor;
+    MenuBar * menuBar;
 };
 
 #endif
