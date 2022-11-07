@@ -9,7 +9,8 @@ Goal: contains the sensor class
 #include <iostream>
 #include <vector>
 
-User::User(std::string employeeNumber, std::string NIF){
+User::User(std::string employeeNumber, std::string NIF, std::string name){
+  this->name = name;
   User::setEmployeeNumber(employeeNumber);
   User::setNIF(NIF);
   this->lastLogTime = NIF;
@@ -21,6 +22,10 @@ bool User::isSameNIF(std::string NIF){
 
 bool User::isSameEmployeeNumber(std::string employeeNumber){
   return this->employeeNumber.compare(employeeNumber) == 0;
+};
+
+std::string User::getName(){
+  return this->name;
 };
 
 void User::addTimestamp(std::string logTime){

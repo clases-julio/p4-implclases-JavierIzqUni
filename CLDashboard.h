@@ -7,9 +7,10 @@ class CLDashboard : public Dashboard{
   public:
     CLDashboard(); /* basic constructor */
     void showMainMenu();
-    void changeInterface();
-  private:
-    int terminalWidth;
+    void changeInterface(std::string = "");
+  protected:
+    void readCommand();
+    void listSensor();
 };
 
 #endif

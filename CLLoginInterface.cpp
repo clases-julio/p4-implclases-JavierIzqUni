@@ -27,12 +27,16 @@ void CLLoginInterface::showWelcomeMessage(){
 void CLLoginInterface::askEmployeeNumber(){
   std::cout << "\u001b[7C";
   std::cout << "\u001b[3A";
-  std::cin >> this->inputEmployeeNumber;
+  char input[6];
+  std::cin.getline(input ,6);
+  this->inputEmployeeNumber = input;
 }
 
 void CLLoginInterface::askNIF(){
   std::cout << "\u001b[u";
-  std::cin >> this->inputNIF;
+  char input[9];
+  std::cin.getline(input ,9);
+  this->inputNIF = input;
   std::cout << "\n\n\n";
 
 }

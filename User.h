@@ -5,14 +5,16 @@
 
 class User{
 public:
-  User(std::string = "00000",std::string = "00000000");
+  User(std::string = "00000",std::string = "00000000",std::string = "default");
   ~User();
   bool isSameNIF(std::string);
   bool isSameEmployeeNumber(std::string);
+  std::string getName();
   void addTimestamp(std::string);
   std::string getTimestamp();
 
 protected:
+  std::string name;
   std::string NIF; /* 8 digits */
   std::string employeeNumber; /* 5 digits */
   std::string lastLogTime; /* Placeholder */

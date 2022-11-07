@@ -1,3 +1,4 @@
+#include "User.h"
 #include <iostream>
 #include <vector>
 
@@ -7,5 +8,7 @@ void printCenterFromFile(std::string, std::string = "none");
 void printCenter(std::string, int = 0, std::string = "none");
 void printColor(std::string, std::string = "none");
 void printMenu(std::string, std::string, std::string);
-void startCustomTerminal();
+void startCustomTerminal(int);
+void clearCustomTerminal(int);
+std::vector<std::string> newCommand(User,std::string = "");
 std::string setColor(std::string);

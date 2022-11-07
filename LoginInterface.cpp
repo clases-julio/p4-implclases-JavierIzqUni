@@ -24,7 +24,7 @@ LoginInterface *LoginInterface::Create(std::string type){
 };
 
 bool LoginInterface::checkUser(){
-  User user = this->dastabase.getUser(this->inputEmployeeNumber,this->inputNIF);
+  this->user = this->dastabase.getUser(this->inputEmployeeNumber,this->inputNIF);
   return ! (user.isSameEmployeeNumber("00000") && user.isSameNIF("00000000"));
 }
 

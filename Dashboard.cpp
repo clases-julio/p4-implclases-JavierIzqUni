@@ -14,11 +14,19 @@ Dashboard::Dashboard(){}
 
 Dashboard *Dashboard::Create(std::string type){
   if (type == "CLI"){
-    return new CLDashboard;
+    return new CLDashboard();
   }
   else {
-    return new CLDashboard;
+    return new CLDashboard();
   }
 };
+
+void Dashboard::setUser(User user){
+  this->user = user;
+}
+
+void Dashboard::exit(){
+  std::exit(0);
+}
 
 Dashboard::~Dashboard(){}

@@ -28,23 +28,23 @@ User.o: User.h
 
 LoginInterface.o: LoginInterface.h CLLoginInterface.h User.h Database.h
 
-CLIUtils.o: CLIUtils.h
+CLIUtils.o: CLIUtils.h User.h
 
 CLLoginInterface.o: LoginInterface.h CLLoginInterface.h CLIUtils.h Database.h
 
-CLDashboard.o: Dashboard.h CLDashboard.h MenuBar.h CLMenuBar.h CLIUtils.h
+CLDashboard.o: Dashboard.h CLDashboard.h MenuBar.h CLMenuBar.h CLIUtils.h User.h
 
-Dashboard.o: Dashboard.h CLDashboard.h MenuBar.h
+Dashboard.o: Dashboard.h CLDashboard.h MenuBar.h User.h
 
 CLMenuBar.o: MenuBar.h CLMenuBar.h CLIUtils.h
 
 MenuBar.o: MenuBar.h CLMenuBar.h
 
-CLInterface.o: CLInterface.h Interface.h Dashboard.h LoginInterface.h User.h CLIUtils.h
+CLInterface.o: CLInterface.h Interface.h Dashboard.h LoginInterface.h CLIUtils.h
 
 QtInterface.o: QtInterface.h Interface.h Dashboard.h LoginInterface.h
 
-Interface.o: Interface.h Dashboard.h LoginInterface.h 
+Interface.o: Interface.h Dashboard.h LoginInterface.h
 
 clean:
 >rm *.o main terminalSize.txt

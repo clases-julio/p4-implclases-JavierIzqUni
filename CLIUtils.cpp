@@ -58,6 +58,12 @@ std::string join(std::vector<std::string> v, char c) {
   return s;
 }
 
+/**
+ * @brief Print the contents of the file in the center
+ * 
+ * @param fileName 
+ * @param color 
+ */
 void printCenterFromFile(std::string fileName, std::string color){
   std::ifstream configFile;
   configFile.open(fileName);
@@ -75,17 +81,36 @@ void printCenterFromFile(std::string fileName, std::string color){
   }
 };
 
+/**
+ * @brief Print the string in the center
+ * 
+ * @param toPrint 
+ * @param reservedCharacters 
+ * @param color 
+ */
 void printCenter(std::string toPrint, int reservedCharacters, std::string color){
   std::cout << std::setw((terminalWidth-toPrint.size()-reservedCharacters)/2);
   printColor(toPrint,color);
 }
 
+/**
+ * @brief Print the string to the terminal in the given color
+ * 
+ * @param toPrint 
+ * @param color 
+ */
 void printColor(std::string toPrint, std::string color){
   std::string colorCode = setColor(color);
   std::string noColor = "\u001b[0m";
   std::cout << colorCode << toPrint << noColor;
 }
 
+/**
+ * @brief Set the Color to print
+ * 
+ * @param color 
+ * @return std::string 
+ */
 std::string setColor(std::string color){
   if (color.compare("grey") == 0) return "\u001b[1;30m";
   if (color.compare("red") == 0) return "\u001b[1;31m";
@@ -98,10 +123,31 @@ std::string setColor(std::string color){
   return "\u001b[0m";
 }
 
-void startCustomTerminal(){
-  std::cout << "\u001b[" << terminalHeight - 11 - 2 << "B";
+void startCustomTerminal(int terminalSize){
+  std::cout << "\u001b[" << terminalHeight - 1 - terminalSize << ";0H";
   std::cout << std::setfill('-')<<std::setw(terminalWidth) << "\n";
-  std::cout << "> ";
-  std::string i;
-  std::cin >> i;
+}
+
+void clearCustomTerminal(int terminalSize){
+  std::cout << "\u001b[" << terminalHeight - terminalSize << ";0H" << "\u001b[0J";
+}
+
+std::vector<std::string> newCommand(User user, std::string currentSensor){
+  std::cout << user.getName() << "@jveh"<< ":~";
+  if (currentSensor.compare("") != 0) std::cout << "/";
+  std::cout << currentSensor << "> ";
+
+  char input[100] = {0};
+  std::cin.getline(input,100);
+  std::string inputString = input;
+
+  std::string tmp;
+  std::stringstream ss(inputString);
+  std::vector<std::string> separatedInput;
+
+  while(getline(ss, tmp, ' ')){
+      separatedInput.push_back(tmp);
+  }
+
+  return separatedInput;
 }

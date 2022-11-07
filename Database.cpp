@@ -2,7 +2,7 @@
 #include "User.h"
 
 Database::Database(){
-  User user1 ("10000","1234567A");
+  User user1 ("10000","1234567A","paco");
   User user2 ("20000","1234527J");
   User user3 ("30000","1234347C");
   addUser(user1);

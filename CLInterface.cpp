@@ -27,6 +27,7 @@ void CLInterface::login(){
   this->loginInterface->askNIF();
   usleep(2 * 1000000);
   if (this->loginInterface->checkUser()){
+    this->dashboard->setUser(this->loginInterface->getUser());
     printCenter("Login successful" );
     std::cout << "\n";
   } else {
