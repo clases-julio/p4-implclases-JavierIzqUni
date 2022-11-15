@@ -1,6 +1,4 @@
 #include "Interface.h"
-#include <iostream>
-#include <unistd.h>
 
 int main(){
   Interface *interfaceCli;

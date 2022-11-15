@@ -8,7 +8,6 @@ class CLInterface : public Interface{
   public:
     CLInterface(); /* basic constructor */
     void login(int tries);
-    void loadMenu();
 };
 
 #endif
