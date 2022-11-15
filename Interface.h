@@ -8,10 +8,11 @@
 
 class Interface{
 public:
-  static Interface *Create(std::string = "CLI");
+  static Interface *Create(const std::string type = "CLI");
   Interface(); /* basic constructor */
-  virtual void login() = 0;
-  virtual void loadMenu() = 0;
+  virtual void login(int tries) = 0;
+  void login(std::string userNumber, std::string nif);
+  bool loadMenu();
   virtual ~Interface();
 
 protected:

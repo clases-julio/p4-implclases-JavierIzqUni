@@ -11,11 +11,10 @@ Goal: contains the sensor class
 #include <iostream>
 #include <stdio.h>
 
-CLLoginInterface::CLLoginInterface(){
-}
+CLLoginInterface::CLLoginInterface(){}
 
 void CLLoginInterface::showWelcomeMessage(){
-  system("clear");
+  std::cout << "\u001b[2J\u001b[0;0H";
   printCenterFromFile("CLLoginInterface.config", "green");
   std::cout << "\n\n\n";
   printCenter("Enter your employee number: ",5);
@@ -25,18 +24,28 @@ void CLLoginInterface::showWelcomeMessage(){
 }
 
 void CLLoginInterface::askEmployeeNumber(){
-  std::cout << "\u001b[7C";
-  std::cout << "\u001b[3A";
-  char input[6];
-  std::cin.getline(input ,6);
-  this->inputEmployeeNumber = input;
+  std::cout << "\u001b[7C\u001b[3A";
+  char * inputBuffer = new char[100];
+  std::cin.getline(inputBuffer ,100);
+  this->inputEmployeeNumber = inputBuffer;
+  delete inputBuffer;
+}
+
+void CLLoginInterface::askEmployeeNumber(const std::string & userNumber){
+  this->inputEmployeeNumber = userNumber;
 }
 
 void CLLoginInterface::askNIF(){
   std::cout << "\u001b[u";
-  char input[9];
-  std::cin.getline(input ,9);
-  this->inputNIF = input;
+  char * inputBuffer = new char[100];
+  std::cin.getline(inputBuffer ,100);
+  this->inputNIF = inputBuffer;
+  delete inputBuffer;
   std::cout << "\n\n\n";
-
 }
+
+void CLLoginInterface::askNIF(const std::string & nif){
+  this->inputNIF = nif;
+}
+
+CLLoginInterface::~CLLoginInterface(){}

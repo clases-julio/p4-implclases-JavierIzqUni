@@ -9,10 +9,15 @@ Goal: contains the sensor class
 #include <iostream>
 #include <vector>
 
-Sensor::Sensor(std::string id,std::string type ,bool active){
+Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool active, int valPerMin){
   this->id = id;
   this->type = type;
   this->active = active;
+  this->magnitude = magnitude;
+  this->valPerMin = valPerMin;
+  this->area = "none";
+  this->data = {40,41,42,43,44,45,44,43,42,41,40,39,37,34,30,25,18,-19,0,13,20,21,18,15,10,5,0,3,6,9,10,11,12};
+  system("echo addSensor >> log.txt");
 }
 
 std::string Sensor::getId(){
@@ -43,12 +48,23 @@ std::vector<int> Sensor::requestData(){
   return this->data;
 }
 
-void Sensor::setMagnitude(int magnitude){
+void Sensor::setMagnitude(std::string magnitude){
   this->magnitude = magnitude;
 }
 
-int Sensor::getMagnitude(){
+std::string Sensor::getMagnitude(){
   return this->magnitude;
 }
 
-Sensor::~Sensor(){};
+void Sensor::setValPerMin(int valPerMin){
+  if (valPerMin <= 0) return;
+  this->valPerMin = valPerMin;
+}
+
+int Sensor::getValPerMin(){
+  return this->valPerMin;;
+}
+
+Sensor::~Sensor(){
+  system("echo removeSensor >> log.txt");
+};

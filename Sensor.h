@@ -5,8 +5,7 @@
 #define	SENSOR_H
 class Sensor{
 public:
-  Sensor(); /* basic constructor */
-  Sensor( std::string = "0000",std::string = "none", bool = true ); /* default constructor */
+  Sensor( std::string id = "0000", std::string type = "none", std::string magnitude = "-", bool active = true, int valPerMin = 1); /* default constructor */
   ~Sensor();
   std::string getId();
   void setActive(bool);
@@ -15,8 +14,10 @@ public:
   void setArea(std::string);
   std::string getArea();
   std::vector<int> requestData();
-  void setMagnitude(int);
-  int getMagnitude();
+  void setMagnitude(std::string magnitude);
+  std::string getMagnitude();
+  void setValPerMin(int valPerMin);
+  int getValPerMin();
 
 private:
   std::string id;
@@ -24,7 +25,8 @@ private:
   std::string type;
   std::string area;
   std::vector <int> data;
-  int magnitude;
+  std::string magnitude;
+  int valPerMin;
 
   void addNewData(int);
   void removeOldData(int);

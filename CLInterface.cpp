@@ -15,28 +15,30 @@ Goal: contains the sensor class
 
 CLInterface::CLInterface(){
   setTerminalSize();
-  loginInterface = LoginInterface::Create();
-  this->loginInterface = loginInterface;
-  dashboard = Dashboard::Create();
-  this->dashboard = dashboard;
 };
 
-void CLInterface::login(){
+void CLInterface::login(int tries){
+  if (tries == 0){
+    loginInterface = LoginInterface::Create();
+    this->loginInterface = loginInterface;
+  }
+  if (tries == 5) std::exit(0);
+
   this->loginInterface->showWelcomeMessage();
   this->loginInterface->askEmployeeNumber();
   this->loginInterface->askNIF();
   usleep(2 * 1000000);
   if (this->loginInterface->checkUser()){
-    this->dashboard->setUser(this->loginInterface->getUser());
     printCenter("Login successful" );
     std::cout << "\n";
-  } else {
-    printCenter("Failed login\n", 0 ,"red");
     usleep(1 * 1000000);
-    login();
+    system("clear");
+    tries = 0;
+    delete this->loginInterface;
+  } else {
+    printCenter("Failed login\n", "red");
+    usleep(1 * 1000000);
+    tries++;
+    login(tries);
   }
-};
-
-void CLInterface::loadMenu(){
-  this->dashboard->showMainMenu();
-};
+}

@@ -5,15 +5,13 @@
 #include <iostream>
 
 CLMenuBar::CLMenuBar(){
-  this->buttons.push_back("Hola");
-  this->buttons.push_back("Adios");
-  this->buttons.push_back("Hla");
-  this->buttons.push_back("Adi");
-  this->buttons.push_back("Exit");
-  this->bar = join(buttons,'/');
 }
 
 void CLMenuBar::show(){
-  printCenter(this->bar);
+  std::cout << "\u001b[0;0H";
+  printLeft("User: " + this->userName);
+  printCenter(this->currentMenu);
+  printRight("Exit (exit) ");
   std::cout << "\n";
 }
+

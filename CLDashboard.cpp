@@ -5,17 +5,30 @@
 #include <iostream>
 
 CLDashboard::CLDashboard(){
-  Sensor sensor1("1","test",false);
+  Sensor *sensor1 = new Sensor("temp1","sensor","ctr",false,2);
+  Sensor *sensor2 = new Sensor("hum1","sensor","c",false,1);
+  Sensor *sensor3 = new Sensor("temp3","sensor","c",false,3);
+  Sensor *sensor4 = new Sensor("temp2","sensor","C",true,1);
+  Sensor *sensor5 = new Sensor("press1","sensor","N",false,1);
+  Sensor *sensor6 = new Sensor("cam1","camera","-",false,1);
+  Sensor *sensor7 = new Sensor("cam2","camera","-",false,1);
   this->sensor.push_back(sensor1);
-  this->sensor.push_back(sensor1);
-  this->sensor.push_back(sensor1);
-  this->sensor.push_back(sensor1);
+  this->sensor.push_back(sensor2);
+  this->sensor.push_back(sensor3);
+  this->sensor.push_back(sensor4);
+  this->sensor.push_back(sensor5);
+  this->sensor.push_back(sensor6);
+  this->sensor.push_back(sensor7);
+  addToMainMenu(); 
+  this->mainMenuIndex = 0;
   this->menuBar = MenuBar::Create();
+  this->menu = Menu::Create();
 }
 
 void CLDashboard::showMainMenu(){
-  system("clear");
-  this->menuBar->show();
+  this->menuBar->setUserName(this->user.getName());
+  this->currentInterface = "..";
+  changeInterface(this->currentInterface);
   startCustomTerminal(10);
   readCommand();
 }
@@ -25,29 +38,87 @@ void CLDashboard::readCommand(){
   int lineNumber = 0;
   while (true){
     lineNumber++;
-    if (lineNumber > 10){ lineNumber%=10; clearCustomTerminal(10);} 
+    if (lineNumber >= 9){ lineNumber=0; clearCustomTerminal(10);}
     command = newCommand(this->user,this->currentInterface);
-    if (command.size() == 0) continue;
-    if (command[0].compare("exit") == 0){system("clear"); exit();}
-    if (command[0].compare("cs") == 0){
-      if (command.size() != 2) continue;
-      changeInterface(command[1]);
+    /* Check if the command is empty */
+    if (command.size() == 0);
+
+    /* Command with only one word */
+    else if (command.size() == 1){
+      if (command[0].compare("ls") == 0){ lineNumber++; listSensor();}
+      else if (command[0].compare("left") == 0) changeMainMenu(-1);
+      else if (command[0].compare("right") == 0) changeMainMenu(1);
+      else if (command[0].compare("clear") == 0) clearCustomTerminal(10);
+      else if (command[0].compare("logout") == 0){ logout(); break;}
+      else if (command[0].compare("exit") == 0){system("clear"); exit(); break;}
+      else if (command[0].compare("update") == 0) {
+        changeInterface(this->currentInterface);
+        std::cout << "\u001b[u"; // Reload cursor pos
+      }
+      else if (command[0].compare("back") == 0) {
+        changeInterface(this->lastInterface);
+        std::cout << "\u001b[u"; // Reload cursor pos
+      }
+      else errorCommand(command[0]);
     }
-    if (command[0].compare("ls") == 0){ lineNumber++; listSensor();}
-    if (command[0].compare("logout") == 0) break;
-    if (command[0].compare("clear") == 0) clearCustomTerminal(10);
+
+    /* Command with two words */
+    /* Check if the command has two words */
+    else if (command.size() == 2){
+      if (command[0].compare("man") == 0) {lineNumber++; helpCommand(command[1]);}
+      else if (command[0].compare("set") == 0) changeCurrentSensorInfo("state", command[1]);
+      else if (command[0].compare("cs") == 0) {
+        changeInterface(command[1]);
+        std::cout << "\u001b[u"; // Reload cursor pos
+      }
+      else if (command[0].compare("add") == 0){
+        addNewSensor(command[1]);
+        changeInterface(this->currentInterface);
+        std::cout << "\u001b[u"; // Reload cursor pos
+      }
+      else if (command[0].compare("rm") == 0){
+        deleteSensor(command[1]);
+        changeInterface(this->currentInterface);
+        std::cout << "\u001b[u"; // Reload cursor pos
+      }
+      else errorCommand(command[0]);
+    }
+
+    /* Command with three words */
+    /* Check if the command has three words */
+    else if (command.size() == 3){
+      if (command[0].compare("set") == 0) changeCurrentSensorInfo(command[1], command[2]);
+      else errorCommand(command[0]);
+    }
+    
+    else {lineNumber++;errorCommand(command[0]);}
+
+    command.clear();
   }
-  
 }
 
 void CLDashboard::listSensor(){
-  for ( Sensor s: this->sensor){
-    std::cout << s.getId() << "\t";
+if (this->currentInterface.compare("..") != 0) return;
+  for ( Sensor *s: this->mainMenu[this->mainMenuIndex]){
+    std::cout << s->getId() << "\t";
   }
   std::cout << "\n";
 }
 
-void CLDashboard::changeInterface(std::string newInterface){
-  if (newInterface.compare("..") == 0) newInterface = "";
-  this->currentInterface = newInterface;
+void CLDashboard::changeMainMenu(int n){
+  if (this->currentInterface.compare("..") == 0){ 
+    moveWindowMainMenu(n);
+    changeInterface("..");
+    std::cout << "\u001b[u"; // Reload cursor pos
+  }
 }
+
+void CLDashboard::helpCommand(std::string command){
+  std::cout << "Help " << command << "\n";
+}
+
+void CLDashboard::errorCommand(std::string command){
+  std::cout << command << ": command not found\n";
+}
+
+CLDashboard::~CLDashboard(){}

@@ -7,9 +7,7 @@ class CLMenuBar : public MenuBar{
   public:
     CLMenuBar(); /* basic constructor */
     void show();
-  private:
-    std::vector<std::string> buttons;
-    std::string bar;
+
 };
 
 #endif

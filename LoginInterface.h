@@ -8,12 +8,14 @@
 
 class LoginInterface{
 public:
-  static LoginInterface *Create(std::string = "CLI");
+  static LoginInterface *Create(const std::string = "CLI");
   LoginInterface(); /* basic constructor */
   virtual ~LoginInterface();
   virtual void showWelcomeMessage() = 0;
   virtual void askEmployeeNumber() = 0;
+  virtual void askEmployeeNumber(const std::string & userNumber) = 0;
   virtual void askNIF() = 0;
+  virtual void askNIF(const std::string & userNumber) = 0;
   bool checkUser();
   User getUser();
 

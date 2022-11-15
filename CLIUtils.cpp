@@ -1,5 +1,6 @@
 #include "CLIUtils.h"
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <iomanip>
 #include <stdio.h>
@@ -17,7 +18,7 @@ void setTerminalSize(){
   int columns = 0;
   
   if ( terminalSize.is_open() ) {
-    while ( terminalSize ) { // equivalent to myfile.good()
+    while ( terminalSize ) {
       std::getline (terminalSize, line);
       columns = stoi(line);
       break;
@@ -46,16 +47,12 @@ void setTerminalSize(){
   terminalHeight = lines;
 };
 
-std::string join(std::vector<std::string> v, char c) {
-  std::string s;
-  s.clear();
-  for (std::vector<std::string>::const_iterator p = v.begin();
-        p != v.end(); ++p) {
-      s += *p;
-      if (p != v.end() - 1)
-        s += c;
-  }
-  return s;
+int getTerminalWidth(){
+  return terminalWidth;
+}
+
+int getTerminalHeight(){
+  return terminalHeight;
 }
 
 /**
@@ -85,11 +82,48 @@ void printCenterFromFile(std::string fileName, std::string color){
  * @brief Print the string in the center
  * 
  * @param toPrint 
- * @param reservedCharacters 
+ * @param padding 
+ */
+void printCenter(const std::string toPrint, const int padding){
+  std::cout << "\u001b[" <<terminalWidth <<"D";
+  std::cout << "\u001b[" << (terminalWidth-toPrint.size()-padding)/2 << "C";
+  std::cout << toPrint;
+}
+
+/**
+ * @brief Print the string in the center
+ * 
+ * @param toPrint 
+ * @param padding 
  * @param color 
  */
-void printCenter(std::string toPrint, int reservedCharacters, std::string color){
-  std::cout << std::setw((terminalWidth-toPrint.size()-reservedCharacters)/2);
+void printCenter(const std::string toPrint, const std::string color, const int padding){
+  std::cout << "\u001b[" <<terminalWidth <<"D";
+  std::cout << "\u001b[" << (terminalWidth-toPrint.size()-padding)/2 << "C";
+  printColor(toPrint,color);
+}
+
+void printRight(const std::string toPrint, const int padding){
+  std::cout << "\u001b[" << terminalWidth <<"D";
+  std::cout << "\u001b[" << terminalWidth - toPrint.size() - padding <<"C";
+  std::cout << toPrint;
+}
+
+void printRight(const std::string toPrint, const std::string color, const int padding){
+  std::cout << "\u001b[" << terminalWidth <<"D";
+  std::cout << "\u001b[" << terminalWidth - toPrint.size() - padding <<"C";
+  printColor(toPrint,color);
+}
+
+void printLeft(const std::string toPrint, const int padding){
+  std::cout << "\u001b[" << terminalWidth << "D";
+  std::cout << "\u001b[" << padding <<"C";
+  std::cout << toPrint;
+}
+
+void printLeft(const std::string toPrint, const std::string color, const int padding){
+  std::cout << "\u001b[" << terminalWidth << "D";
+  std::cout << "\u001b[" << padding <<"C";
   printColor(toPrint,color);
 }
 
@@ -125,17 +159,23 @@ std::string setColor(std::string color){
 
 void startCustomTerminal(int terminalSize){
   std::cout << "\u001b[" << terminalHeight - 1 - terminalSize << ";0H";
-  std::cout << std::setfill('-')<<std::setw(terminalWidth) << "\n";
+  std::cout << std::setfill('-')<<std::setw(terminalWidth) << "" << std::setfill(' ');
+  std::cout << "\u001b[" << terminalHeight - 1 - terminalSize << ";" << (terminalWidth-11)/2 << "H" << " Terminal ";
+  std::cout << "\u001b[" << terminalHeight - terminalSize << ";0H";
 }
 
 void clearCustomTerminal(int terminalSize){
   std::cout << "\u001b[" << terminalHeight - terminalSize << ";0H" << "\u001b[0J";
 }
 
-std::vector<std::string> newCommand(User user, std::string currentSensor){
+void moveCursor(int posX, int posY){
+  std::cout << "\u001b[" << posY << ";" << posX << "H";
+}
+
+std::vector<std::string> newCommand(User & user, std::string currentSensor){
   std::cout << user.getName() << "@jveh"<< ":~";
-  if (currentSensor.compare("") != 0) std::cout << "/";
-  std::cout << currentSensor << "> ";
+  if (currentSensor.compare("..") != 0) std::cout << "/" << currentSensor;
+  std::cout << "> ";
 
   char input[100] = {0};
   std::cin.getline(input,100);
@@ -150,4 +190,78 @@ std::vector<std::string> newCommand(User user, std::string currentSensor){
   }
 
   return separatedInput;
+}
+
+void printGraphic(const std::vector <int> &data, int valPerY, int posX, int posY, int scale){
+  const int spacing = 3;
+  // Graphic standard size 60 * 30
+  const int maxRangeX = 60;
+  const int maxRangeY = 30;
+
+  const int stepX = 5;
+  const int stepY = 3;
+
+  const int maxX = maxRangeX;
+
+  const int rangeX = maxRangeX / scale;
+  const int rangeY = maxRangeY / scale;
+
+  int maxY = * max_element(data.begin(), data.end());
+  if (maxY != 0) maxY = ((maxY / 10) + 1) * 10;
+
+  int minY = * min_element(data.begin(), data.end());
+  if (minY != 0) minY = ((minY / 10) - 1) * 10;
+  
+  if ((maxY - minY) / (rangeY / stepY) % stepY == 2) maxY += 10; 
+  else if ((maxY - minY) / (rangeY / stepY) % stepY == 1){
+    maxY += 10; 
+    minY -= 10;
+  }
+
+  const int axisYvalue = (maxY - minY) / (rangeY / stepY);
+
+  for (int lineY = 0; lineY <= rangeY; lineY++) {
+    moveCursor(posX, posY + lineY);
+    if (lineY % stepY == 0) {
+      std::cout << maxY - (axisYvalue * (lineY / stepY) );
+      moveCursor(posX + spacing, posY + lineY);
+      std::cout << "+";
+    }
+    else {
+      std::cout << "   |";
+    }
+  }
+
+  // Bottom line
+  moveCursor(posX - 2 + spacing + 1, posY + rangeY + 1);
+  std::cout << - rangeX * scale;
+  moveCursor(posX + spacing + 1, posY + rangeY);
+
+  for ( int lineX = 1; lineX <= rangeX; lineX++) {
+    if (lineX % stepX == 0){
+      std::cout << "+";
+      moveCursor(posX + lineX - 2 + spacing + 1, posY + rangeY + 1);
+      std::cout << (lineX - rangeX) * scale;
+      moveCursor(posX + lineX + spacing + 1, posY + rangeY);
+    }
+    else {
+      std::cout << "-";
+    }
+  }
+
+  // Set points on the plot with red color
+  std::cout << "\u001b[1;31m";
+  int endX = posX + 1 + spacing + rangeX;
+  int pointY = 0;
+
+  for (int point = 0; point < data.size(); point+=scale * valPerY){
+    pointY = 0;
+    for (int value = 0; value < scale * valPerY; value++) {
+      pointY += posY + (maxY - data[point + value]) / (axisYvalue / stepY);
+    }
+    moveCursor(endX - point / (scale * valPerY), pointY / (scale * valPerY));
+    std::cout << "·" ;
+  }
+  
+  std::cout << "\u001b[0m"; // Turn of color
 }

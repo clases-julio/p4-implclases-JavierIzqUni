@@ -14,18 +14,19 @@ Goal: contains the sensor class
 
 LoginInterface::LoginInterface(){}
 
-LoginInterface *LoginInterface::Create(std::string type){
+LoginInterface *LoginInterface::Create(const std::string type){
   if (type == "CLI"){
     return new CLLoginInterface;
   }
   else {
-    return new CLLoginInterface;
+    throw std::runtime_error(type + " is not a defined LoginInterface type");
+    std::exit(1);
   }
 };
 
 bool LoginInterface::checkUser(){
   this->user = this->dastabase.getUser(this->inputEmployeeNumber,this->inputNIF);
-  return ! (user.isSameEmployeeNumber("00000") && user.isSameNIF("00000000"));
+  return ! (user.isSameEmployeeNumber("00000") && user.isSameNIF("00000000")); // Is valid user 
 }
 
 User LoginInterface::getUser(){
