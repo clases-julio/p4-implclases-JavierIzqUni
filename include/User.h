@@ -10,7 +10,7 @@ public:
   bool isSameNIF(std::string);
   bool isSameEmployeeNumber(std::string);
   std::string getName();
-  void addTimestamp(std::string);
+  void addTimestamp();
   std::string getTimestamp();
 
 protected:

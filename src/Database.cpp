@@ -13,6 +13,7 @@ Database::Database(){
 User Database::getUser(std::string employeeNumber, std::string NIF){
   for (User i: this->user){
     if (i.isSameEmployeeNumber(employeeNumber) && i.isSameNIF(NIF)){
+      i.addTimestamp();
       return i;
     }
   }

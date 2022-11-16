@@ -8,12 +8,15 @@ Goal: contains the sensor class
 #include "User.h"
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <ctime>
 
 User::User(std::string employeeNumber, std::string NIF, std::string name){
   this->name = name;
   User::setEmployeeNumber(employeeNumber);
   User::setNIF(NIF);
-  this->lastLogTime = NIF;
+  this->lastLogTime = "";
+  this->addTimestamp();
 }
 
 bool User::isSameNIF(std::string NIF){
@@ -28,8 +31,11 @@ std::string User::getName(){
   return this->name;
 };
 
-void User::addTimestamp(std::string logTime){
-  this->lastLogTime = logTime;
+void User::addTimestamp(){
+  auto date = std::chrono::system_clock::now();
+  time_t t = std::chrono::system_clock::to_time_t(date);
+
+  this->lastLogTime = std::ctime(&t);
 };
 std::string User::getTimestamp(){
   return this->lastLogTime;
