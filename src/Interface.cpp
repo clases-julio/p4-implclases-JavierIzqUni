@@ -7,16 +7,12 @@ Goal: contains the sensor class
 
 #include "Interface.h"
 #include "CLInterface.h"
-#include "QTInterface.h"
 
 Interface::Interface(){};
 
 Interface *Interface::Create(const std::string type){
   if (type == "CLI"){
     return new CLInterface;
-  }
-  else if (type == "QT"){
-    return new QTInterface;
   }
   else {
     throw std::runtime_error(type + " is not a defined Interface type");

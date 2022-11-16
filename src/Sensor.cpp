@@ -17,7 +17,6 @@ Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool act
   this->valPerMin = valPerMin;
   this->area = "none";
   this->data = {40,41,42,43,44,45,44,43,42,41,40,39,37,34,30,25,18,-19,0,13,20,21,18,15,10,5,0,3,6,9,10,11,12};
-  system("echo addSensor >> log.txt");
 }
 
 std::string Sensor::getId(){
@@ -65,6 +64,4 @@ int Sensor::getValPerMin(){
   return this->valPerMin;;
 }
 
-Sensor::~Sensor(){
-  system("echo removeSensor >> log.txt");
-};
+Sensor::~Sensor(){};
