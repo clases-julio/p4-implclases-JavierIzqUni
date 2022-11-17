@@ -25,6 +25,10 @@ CLDashboard::CLDashboard(){
   this->menu = Menu::Create();
 }
 
+/**
+ * @brief Shows the default menu and starts the custom terminal
+ * 
+ */
 void CLDashboard::showMainMenu(){
   this->menuBar->setUserName(this->user.getName());
   this->currentInterface = "..";
@@ -33,6 +37,10 @@ void CLDashboard::showMainMenu(){
   readCommand();
 }
 
+/**
+ * @brief Reads and executes a command from the terminal 
+ * 
+ */
 void CLDashboard::readCommand(){
   std::vector<std::string> command;
   int lineNumber = 0;
@@ -73,11 +81,13 @@ void CLDashboard::readCommand(){
         std::cout << "\u001b[u"; // Reload cursor pos
       }
       else if (command[0].compare("add") == 0){
+        if (! this->user.hasAdminPermission()){permissionError();continue;}
         addNewSensor(command[1]);
         changeInterface(this->currentInterface);
         std::cout << "\u001b[u"; // Reload cursor pos
       }
       else if (command[0].compare("rm") == 0){
+        if (! this->user.hasAdminPermission()){permissionError();continue;}
         deleteSensor(command[1]);
         changeInterface(this->currentInterface);
         std::cout << "\u001b[u"; // Reload cursor pos
@@ -98,14 +108,24 @@ void CLDashboard::readCommand(){
   }
 }
 
+/**
+ * @brief Command that lists the sensors in the current menu page
+ * 
+ */
 void CLDashboard::listSensor(){
 if (this->currentInterface.compare("..") != 0) return;
+
   for ( Sensor *s: this->mainMenu[this->mainMenuIndex]){
     std::cout << s->getId() << "\t";
   }
   std::cout << "\n";
 }
 
+/**
+ * @brief Change the page of the menu
+ * 
+ * @param n Number of pages to shift ( positive to the right )
+ */
 void CLDashboard::changeMainMenu(int n){
   if (this->currentInterface.compare("..") == 0){ 
     moveWindowMainMenu(n);
@@ -114,12 +134,30 @@ void CLDashboard::changeMainMenu(int n){
   }
 }
 
+/**
+ * @brief Displays the use of the command 
+ * 
+ * @param command Command to display info about
+ */
 void CLDashboard::helpCommand(std::string command){
   std::cout << "Help " << command << "\n";
 }
 
+/**
+ * @brief Shows error message because the command not being found
+ * 
+ * @param command Command input
+ */
 void CLDashboard::errorCommand(std::string command){
   std::cout << command << ": command not found\n";
+}
+
+/**
+ * @brief Shows error message because the permission being denied to execute it
+ * 
+ */
+void CLDashboard::permissionError(){
+  std::cout << this->user.getName() << " does not have the permissions required. Make sure to contact an administrator.\n";
 }
 
 CLDashboard::~CLDashboard(){}

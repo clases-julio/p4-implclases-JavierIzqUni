@@ -13,8 +13,9 @@ class CLDashboard : public Dashboard{
     void changeMainMenu(int n);
     void readCommand();
     void listSensor();
-    void helpCommand(std::string = "");
-    void errorCommand(std::string = "");
+    void helpCommand(std::string command = "");
+    void errorCommand(std::string command = "");
+    void permissionError();
 };
 
 #endif

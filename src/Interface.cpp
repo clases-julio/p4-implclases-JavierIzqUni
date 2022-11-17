@@ -1,10 +1,3 @@
-/* ---------------------------
-File: sensor.cpp
-Author: Javier Izquierdo
-Date: 03/11/2022
-Goal: contains the sensor class
----------------------------- */
-
 #include "Interface.h"
 #include "CLInterface.h"
 

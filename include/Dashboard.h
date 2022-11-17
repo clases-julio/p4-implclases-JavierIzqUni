@@ -28,14 +28,32 @@ class Dashboard{
     bool canExit();
 
   protected:
+    /**
+     * @brief Vector of all the vectors in the dashboard
+     */
     std::vector <Sensor *> sensor;
+    /**
+     * @brief Vetor that contains the pages of the main Menu
+     */
     std::vector <std::vector <Sensor *>> mainMenu;
+    /**
+     * @brief Current page of the main Menu 
+     */
     int mainMenuIndex;
     MenuBar * menuBar;
     Menu * menu;
     User user;
+    /**
+     * @brief Current interface, can be a sensor ID or the main menu (..)
+     */
     std::string currentInterface;
+    /**
+     * @brief Last interface, can be a sensor ID or the main menu (..)
+     */
     std::string lastInterface;
+    /**
+     * @brief If the currentInterface is a sensor then the value would be that sensor, if not the value is nullptr
+     */
     Sensor * currentSensor;
     bool allowedToExit;
 };

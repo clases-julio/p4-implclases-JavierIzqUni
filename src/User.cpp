@@ -1,10 +1,3 @@
-/* ---------------------------
-File: sensor.cpp
-Author: Javier Izquierdo
-Date: 03/11/2022
-Goal: contains the sensor class
----------------------------- */
-
 #include "User.h"
 #include <iostream>
 #include <vector>
@@ -17,6 +10,7 @@ User::User(std::string employeeNumber, std::string NIF, std::string name){
   User::setNIF(NIF);
   this->lastLogTime = "";
   this->addTimestamp();
+  this->adminPermission = false;
 }
 
 bool User::isSameNIF(std::string NIF){
@@ -56,5 +50,9 @@ void User::setEmployeeNumber(std::string employeeNumber){
     this->employeeNumber = "00000";
   }
 };
+
+bool User::hasAdminPermission(){
+  return this->adminPermission;
+}
 
 User::~User(){};

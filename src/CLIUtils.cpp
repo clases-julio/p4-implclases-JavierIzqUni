@@ -234,14 +234,14 @@ void printGraphic(const std::vector <int> &data, int valPerY, int posX, int posY
 
   // Bottom line
   moveCursor(posX - 2 + spacing + 1, posY + rangeY + 1);
-  std::cout << - rangeX * scale;
+  std::cout << - maxX;
   moveCursor(posX + spacing + 1, posY + rangeY);
 
   for ( int lineX = 1; lineX <= rangeX; lineX++) {
     if (lineX % stepX == 0){
       std::cout << "+";
       moveCursor(posX + lineX - 2 + spacing + 1, posY + rangeY + 1);
-      std::cout << (lineX - rangeX) * scale;
+      std::cout << (lineX * scale) - maxX;
       moveCursor(posX + lineX + spacing + 1, posY + rangeY);
     }
     else {
