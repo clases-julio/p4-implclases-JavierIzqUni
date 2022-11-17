@@ -33,3 +33,6 @@
 
 # Visual Studio settings
 *.json
+
+# Residual files
+terminalSize.txt
