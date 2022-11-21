@@ -20,7 +20,7 @@ class Dashboard{
     void moveWindowMainMenu(int n = 1);
     void changeCurrentSensorInfo(std::string toChange, std::string newValue);
     void setUser(User user);
-    void addNewSensor(std::string id);
+    void addNewSensor(std::string type);
     void deleteSensor(std::string id);
     void cleanSensor();
     void exit();

@@ -108,8 +108,8 @@ void Dashboard::setUser(User user){
  * @param id New sensor type
  * @see addToMainMenu
  */
-void Dashboard::addNewSensor(std::string id){
-  Sensor *sensor = new Sensor(id,"sensor","c",true,1);
+void Dashboard::addNewSensor(std::string type){
+  Sensor *sensor = Sensor::Create(type);;
   addToMainMenu(sensor);
 }
 

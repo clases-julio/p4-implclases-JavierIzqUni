@@ -6,8 +6,39 @@ Goal: contains the sensor class
 ---------------------------- */
 
 #include "Sensor.h"
+#include "Thermometer.h"
+#include "Humidity.h"
+#include "Moisture.h"
+#include "AirQuality.h"
+#include "CameraBW.h"
+#include "CameraRGB.h"
 #include <iostream>
 #include <vector>
+
+Sensor *Sensor::Create(std::string type){
+  if (type == "thermometer"){
+    return new Thermometer;
+  }
+  else if (type == "humidity"){
+    return new Humidity;
+  }
+  else if (type == "moisture"){
+    return new Moisture;
+  }
+  else if (type == "airquality"){
+    return new AirQuality;
+  }
+  else if (type == "bwcamera"){
+    return new CameraBW;
+  }
+  else if (type == "rgbcamera"){
+    return new CameraRGB;
+  }
+  else {
+    throw std::runtime_error(type + " is not a defined sensor type");
+    std::exit(1);
+  }
+};
 
 Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool active, int valPerMin){
   this->id = id;
@@ -16,7 +47,6 @@ Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool act
   this->magnitude = magnitude;
   this->valPerMin = valPerMin;
   this->area = "none";
-  this->data = {40,41,42,43,44,45,44,43,42,41,40,39,37,34,30,25,18,-19,0,13,20,21,18,15,10,5,0,3,6,9,10,11,12};
 }
 
 std::string Sensor::getId(){
@@ -44,6 +74,16 @@ std::string Sensor::getArea(){
 }
 
 std::vector<int> Sensor::requestData(){
+  this->data.clear();
+  int newVal = rand() % 50 - 10;
+  int med = newVal;
+  this->data.push_back(med);
+  for (int i = 0; i < 60 * this->valPerMin - 1; i++){
+    newVal = rand() % 50 - 10;
+    med = ( med + newVal ) / 2;
+    this->data.push_back(med);
+  }
+  
   return this->data;
 }
 

@@ -5,13 +5,13 @@
 #include <iostream>
 
 CLDashboard::CLDashboard(){
-  Sensor *sensor1 = new Sensor("temp1","sensor","ctr",false,2);
-  Sensor *sensor2 = new Sensor("hum1","sensor","c",false,1);
-  Sensor *sensor3 = new Sensor("temp3","sensor","c",false,3);
-  Sensor *sensor4 = new Sensor("temp2","sensor","C",true,1);
-  Sensor *sensor5 = new Sensor("press1","sensor","N",false,1);
-  Sensor *sensor6 = new Sensor("cam1","camera","-",false,1);
-  Sensor *sensor7 = new Sensor("cam2","camera","-",false,1);
+  Sensor *sensor1 = Sensor::Create("thermometer");
+  Sensor *sensor2 = Sensor::Create("humidity");
+  Sensor *sensor3 = Sensor::Create("humidity");
+  Sensor *sensor4 = Sensor::Create("airquality");
+  Sensor *sensor5 = Sensor::Create("moisture");
+  Sensor *sensor6 = Sensor::Create("rgbcamera");
+  Sensor *sensor7 = Sensor::Create("bwcamera");
   this->sensor.push_back(sensor1);
   this->sensor.push_back(sensor2);
   this->sensor.push_back(sensor3);
@@ -85,6 +85,7 @@ void CLDashboard::readCommand(){
         addNewSensor(command[1]);
         changeInterface(this->currentInterface);
         std::cout << "\u001b[u"; // Reload cursor pos
+        lineNumber++;
       }
       else if (command[0].compare("rm") == 0){
         if (! this->user.hasAdminPermission()){permissionError();continue;}
