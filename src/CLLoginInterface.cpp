@@ -15,7 +15,7 @@ CLLoginInterface::CLLoginInterface(){}
 
 void CLLoginInterface::showWelcomeMessage(){
   std::cout << "\u001b[2J\u001b[0;0H";
-  printCenterFromFile("CLLoginInterface.config", "green");
+  printCenterFromFile("src/CLIWelcomeMessage.ascii", "green");
   std::cout << "\n\n\n";
   printCenter("Enter your employee number: ",5);
   std::cout << "\n\n\n";

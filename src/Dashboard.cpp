@@ -164,10 +164,6 @@ void Dashboard::changeCurrentSensorInfo(std::string toChange, std::string newVal
   if (this->currentInterface.compare("..") == 0) return;
 
   if (toChange.compare("area") == 0) this->currentSensor->setArea(newValue);
-  else if (toChange.compare("magnitude") == 0){
-    if (newValue.size() != 1) return; // Placeholder
-    this->currentSensor->setMagnitude("C"); // Placeholder
-  }
   else if (toChange.compare("val") == 0){
     try {
       std::stoi(newValue);
