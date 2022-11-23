@@ -84,5 +84,6 @@ clean:
 run: all
 	./$(OUTPUTMAIN)
 
-install: $(OUTPUT) $(MAIN)
+install:
 	@mkdir bin
+	$(OUTPUT) $(MAIN)
