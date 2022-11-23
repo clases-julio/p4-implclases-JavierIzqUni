@@ -83,7 +83,3 @@ clean:
 
 run: all
 	./$(OUTPUTMAIN)
-
-install:
-	@mkdir bin
-	$(OUTPUT) $(MAIN)
