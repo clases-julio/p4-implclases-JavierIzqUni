@@ -65,7 +65,6 @@ all: $(OUTPUT) $(MAIN)
 	@echo Executing 'all' complete!
 
 $(MAIN): $(OBJECTS) 
-  @mkdir bin
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(OUTPUTMAIN) $(OBJECTS) $(LFLAGS) $(LIBS)
 
 # this is a suffix replacement rule for building .o's from .c's
@@ -84,3 +83,6 @@ clean:
 
 run: all
 	./$(OUTPUTMAIN)
+
+install: $(OUTPUT) $(MAIN)
+	@mkdir bin
