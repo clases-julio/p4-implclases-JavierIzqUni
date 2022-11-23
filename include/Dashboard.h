@@ -22,7 +22,7 @@ class Dashboard{
     Dashboard(); /* basic constructor */
     virtual ~Dashboard();
     virtual void showMainMenu() = 0;
-    void changeInterface(std::string newInterface = "");
+    bool changeInterface(std::string newInterface = "");
     void addToMainMenu();
     void addToMainMenu(Sensor *sensor);
     void moveWindowMainMenu(int n = 1);

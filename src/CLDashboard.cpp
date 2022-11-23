@@ -87,8 +87,8 @@ void CLDashboard::readCommand(){
       if (command[0].compare("man") == 0) {lineNumber++; helpCommand(command[1]);}
       else if (command[0].compare("set") == 0) changeCurrentSensorInfo("state", command[1]);
       else if (command[0].compare("cs") == 0) {
-        changeInterface(command[1]);
-        std::cout << "\u001b[u"; // Reload cursor pos
+        if (! changeInterface(command[1])) {lineNumber++;errorCommand("cs "+command[1]);}
+        else {std::cout << "\u001b[u"; }// Reload cursor pos
       }
       else if (command[0].compare("add") == 0){
         if (! this->user.hasAdminPermission()){permissionError();continue;}

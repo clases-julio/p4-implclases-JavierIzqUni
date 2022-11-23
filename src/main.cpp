@@ -25,5 +25,4 @@ int main(int argc,char* argv[]){
     interfaceCli->login(argv[1],argv[2]);
     interfaceCli->loadMenu();
   }
-  
 }

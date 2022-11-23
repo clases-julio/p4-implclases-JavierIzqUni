@@ -45,7 +45,7 @@ void Interface::login(const std::string userNumber, const std::string nif){
     system("clear");
     delete this->loginInterface;
   } else {
-    exit(0);
+    exit(1);
   }
 };
 

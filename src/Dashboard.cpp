@@ -34,11 +34,18 @@ Dashboard *Dashboard::Create(const std::string type){
 };
 
 /**
+ * @brief 
+ * 
+ * @param newInterface 
+ */
+/**
  * @brief Changes the current interface to the input one
  * 
  * @param newInterface Desired interface to change ( .. = main Menu)
+ * @return true = can change interface
+ * @return false = cannot change interface
  */
-void Dashboard::changeInterface(std::string newInterface){
+bool Dashboard::changeInterface(std::string newInterface){
   
   if (newInterface.compare("..") == 0){
     if (this->mainMenuIndex + 1 > this->mainMenu.size()) moveWindowMainMenu(-1) ;
@@ -46,11 +53,15 @@ void Dashboard::changeInterface(std::string newInterface){
     this->menu->show(this->mainMenu[this->mainMenuIndex]);
     std::string menuName = std::to_string(this->mainMenuIndex + 1)  + "/" + std::to_string(this->mainMenu.size());
     this->menuBar->setCurrentMenu(menuName);
+    this->menuBar->show();
+    this->lastInterface = this->currentInterface;
+    this->currentInterface = newInterface;
+    return true;
   }
   else if (this->currentInterface.compare(newInterface) == 0){
         this->menu->show(this->currentSensor);
         this->menuBar->setCurrentMenu(this->currentInterface);
-        return;
+        return true;
   }
   else {
     for (Sensor *sensor: this->sensor){
@@ -58,14 +69,15 @@ void Dashboard::changeInterface(std::string newInterface){
         this->currentSensor = sensor;
         this->menu->show(this->currentSensor);
         this->menuBar->setCurrentMenu(newInterface);
+        this->menuBar->show();
+        this->lastInterface = this->currentInterface;
+        this->currentInterface = newInterface;
+        return true;
       }
     }
+    return false;
   }
-  this->menuBar->show();
-  this->lastInterface = this->currentInterface;
-  this->currentInterface = newInterface;
 }
-
 /**
  * @brief Adds a sensor to the dashboard
  * 

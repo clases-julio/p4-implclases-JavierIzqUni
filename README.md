@@ -1,6 +1,7 @@
 # P4-ImplClases
 ## Requirements
 
+  * Linux
   * g++ v9.4.0 or newer
   * Make
 
@@ -10,34 +11,27 @@
 The code can be compiled with the provided makefile using the standard `make`
 command.
 
+## Documentation
 
+The documentation can be read from the following [pdf](/doc/refman.pdf)
 ## Sample Execution & Output
 
 If run without command line arguments, using
 
 ```
-./precisionEstimate
+./bin/main
 ```
 
-the following usage message will be displayed.
+the program will start using the default configuration, using the command line interface.
 
-```
-Usage: ./precisionEstimate numExecs
-```
 
 If run using 
 
 ```
-./precisionEstimate 100000000
+./bin/main <employee Number> <employee NIF>
 ```
 
-output *simliar* to
+the program will try to log in with the passed arguments using the command line interface, if it fails the program will exit with an error
 
-```
-   0 secs | 1.19209e-07
-   1 secs | 2.22045e-16
-  17 secs | 1.92593e-34
-```
-
-will  be displayed. Note that the precision estimates will vary by
-architecture/system.
+## Recomendations
+* Use the text mode in order to see with more resolution. Usually press: `Super + F2/F3/F4`
