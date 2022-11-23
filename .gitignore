@@ -35,6 +35,7 @@ bin/*
 # Doxygen latex documentation
 doc/latex/*
 
+
 # Visual Studio settings
 .vscode/*
 
