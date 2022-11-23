@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2022
  * 
  */
+
+#include <string>
+
 #ifndef MENUBAR_H
 #define	MENUBAR_H
 

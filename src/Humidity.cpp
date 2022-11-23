@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "Sensor.h"
+#include "Humidity.h"
 
 /**
  * @brief Id of all the humidity sensor so there is not a duplicate id
