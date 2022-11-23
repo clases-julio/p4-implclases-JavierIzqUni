@@ -1,22 +1,29 @@
-/* ---------------------------
-File: sensor.cpp
-Author: Javier Izquierdo
-Date: 03/11/2022
-Goal: contains the sensor class
----------------------------- */
-
+/**
+ * @file CLInterface.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "CLInterface.h"
-#include "User.h"
-#include "LoginInterface.h"
-#include "Dashboard.h"
-#include "CLIUtils.h"
-#include <unistd.h>
-#include <iostream>
 
+/**
+ * @brief Create a new Interface for the command line
+ * @note Also gets the terminal size 
+ */
 CLInterface::CLInterface(){
   setTerminalSize();
 };
 
+/**
+ * @brief Controls the login interface for the command line
+ * 
+ * @param tries Number of tries to login
+ * @note If exceeded the number of tries, then the program will exit
+ */
 void CLInterface::login(int tries){
   if (tries == 0){
     loginInterface = LoginInterface::Create();

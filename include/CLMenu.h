@@ -1,7 +1,15 @@
-#include "Sensor.h"
+/**
+ * @file CLMenu.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of CLMenu.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Menu.h"
-
-#include <vector>
+#include "CLIUtils.h"
 
 #ifndef CLMENU_H
 #define	CLMENU_H

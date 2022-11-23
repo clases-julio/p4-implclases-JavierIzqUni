@@ -1,7 +1,16 @@
+/**
+ * @file Dashboard.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Dashboard.h"
 #include "CLDashboard.h"
-#include <string>
-#include <vector>
+
 
 Dashboard::Dashboard(){
   this->allowedToExit = true;
@@ -105,7 +114,7 @@ void Dashboard::setUser(User user){
 /**
  * @brief Creates the new sensor and calls addToMainMenu
  * 
- * @param id New sensor type
+ * @param type New sensor type
  * @see addToMainMenu
  */
 void Dashboard::addNewSensor(std::string type){

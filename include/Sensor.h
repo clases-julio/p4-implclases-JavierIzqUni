@@ -1,5 +1,16 @@
+/**
+ * @file Sensor.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of Sensor.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 #ifndef SENSOR_H 
 #define	SENSOR_H

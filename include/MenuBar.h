@@ -1,6 +1,13 @@
-#include <string>
-#include <vector>
-
+/**
+ * @file MenuBar.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of MenuBar.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef MENUBAR_H
 #define	MENUBAR_H
 

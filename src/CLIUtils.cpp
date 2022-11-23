@@ -1,11 +1,14 @@
+/**
+ * @file CLIUtils.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "CLIUtils.h"
-#include <iostream>
-#include <algorithm>
-#include <vector>
-#include <iomanip>
-#include <stdio.h>
-#include <string>
-#include <fstream>
 
 int terminalWidth;
 int terminalHeight;

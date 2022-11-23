@@ -1,10 +1,18 @@
+/**
+ * @file main.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Interface.h"
-#include <iostream>
 
 int main(int argc,char* argv[]){
   Interface *interfaceCli;
   interfaceCli = Interface::Create();
-  std::cout << argc;
   if ( argc - 1  == 0 ){
     bool isRunning = true;
     while (isRunning) {

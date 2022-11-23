@@ -1,18 +1,21 @@
-/* ---------------------------
-File: sensor.cpp
-Author: Javier Izquierdo
-Date: 03/11/2022
-Goal: contains the sensor class
----------------------------- */
-
-#include "LoginInterface.h"
+/**
+ * @file CLLoginInterface.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "CLLoginInterface.h"
-#include "CLIUtils.h"
-#include <iostream>
-#include <stdio.h>
 
 CLLoginInterface::CLLoginInterface(){}
 
+/**
+ * @brief Show the login screen messages in the command line
+ * 
+ */
 void CLLoginInterface::showWelcomeMessage(){
   std::cout << "\u001b[2J\u001b[0;0H";
   printCenterFromFile("src/CLIWelcomeMessage.ascii", "green");
@@ -23,6 +26,10 @@ void CLLoginInterface::showWelcomeMessage(){
   std::cout << "\u001b[s";
 }
 
+/**
+ * @brief Ask the user to input the employee number from the command line
+ * 
+ */
 void CLLoginInterface::askEmployeeNumber(){
   std::cout << "\u001b[7C\u001b[3A";
   char * inputBuffer = new char[100];
@@ -31,10 +38,19 @@ void CLLoginInterface::askEmployeeNumber(){
   delete inputBuffer;
 }
 
+/**
+ * @brief Default setter of employee number
+ * @note This method is used when the user executes the main with the NIF and employee number
+ * @param userNumber 
+ */
 void CLLoginInterface::askEmployeeNumber(const std::string & userNumber){
   this->inputEmployeeNumber = userNumber;
 }
 
+/**
+ * @brief Ask the user to input the employee nif from the command line
+ * 
+ */
 void CLLoginInterface::askNIF(){
   std::cout << "\u001b[u";
   char * inputBuffer = new char[100];
@@ -44,6 +60,11 @@ void CLLoginInterface::askNIF(){
   std::cout << "\n\n\n";
 }
 
+/**
+ * @brief Default setter of employee nif
+ * @note This method is used when the user executes the main with the NIF and employee number
+ * @param nif 
+ */
 void CLLoginInterface::askNIF(const std::string & nif){
   this->inputNIF = nif;
 }

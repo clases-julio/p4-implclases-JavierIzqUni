@@ -1,9 +1,17 @@
-#include <string>
-#include <vector>
-#include "Sensor.h"
+/**
+ * @file Dashboard.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of Dashboard.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "User.h"
 #include "MenuBar.h"
 #include "Menu.h"
+
 
 #ifndef DASHBOARD_H
 #define	DASHBOARD_H

@@ -1,5 +1,13 @@
-#include "Database.h"
-#include "User.h"
+/**
+ * @file Database.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Database.h"
 
 Database::Database(){

@@ -1,9 +1,24 @@
+/**
+ * @file Menu.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Menu.h"
-#include <string>
 #include "CLMenu.h"
 
 Menu::Menu(){}
 
+/**
+ * @brief Create a new Menu instance of the type specified
+ * 
+ * @param type Type of menu
+ * @return Menu* New menu instance
+ */
 Menu * Menu::Create(const std::string type){
   if (type == "CLI"){
     return new CLMenu;

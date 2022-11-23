@@ -1,6 +1,18 @@
+/**
+ * @file CLIUtils.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of CLIUtils.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "User.h"
 #include <iostream>
-#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <fstream>
 
 void setTerminalSize();
 int getTerminalWidth();

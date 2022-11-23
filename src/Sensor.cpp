@@ -1,10 +1,13 @@
-/* ---------------------------
-File: sensor.cpp
-Author: Javier Izquierdo
-Date: 03/11/2022
-Goal: contains the sensor class
----------------------------- */
-
+/**
+ * @file Sensor.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Sensor.h"
 #include "Thermometer.h"
 #include "Humidity.h"
@@ -12,9 +15,13 @@ Goal: contains the sensor class
 #include "AirQuality.h"
 #include "CameraBW.h"
 #include "CameraRGB.h"
-#include <iostream>
-#include <vector>
 
+/**
+ * @brief Creates an instance of the sensor type
+ * 
+ * @param type 
+ * @return Sensor* 
+ */
 Sensor *Sensor::Create(std::string type){
   if (type == "thermometer"){
     return new Thermometer;
@@ -40,6 +47,15 @@ Sensor *Sensor::Create(std::string type){
   }
 };
 
+/**
+ * @brief Construct a new Sensor:: Sensor object
+ * 
+ * @param id Identification of type and number
+ * @param type Type of sensor
+ * @param magnitude Data values magnitude
+ * @param active Sensor is On/Off
+ * @param valPerMin Number of values per min
+ */
 Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool active, int valPerMin){
   this->id = id;
   this->type = type;
@@ -49,57 +65,94 @@ Sensor::Sensor(std::string id, std::string type, std::string magnitude, bool act
   this->area = "none";
 }
 
+/**
+ * @brief Returns the sensor id
+ * 
+ * @return std::string ID
+ */
 std::string Sensor::getId(){
   return this->id;
 };
 
+/**
+ * @brief Turns the sensor On/Off
+ * 
+ * @param active 
+ */
 void Sensor::setActive(bool active){
   this->active = active;
 };
 
+/**
+ * @brief Returns if the sensor is On/Off
+ * 
+ * @return true = ON
+ * @return false = OFF
+ */
 bool Sensor::isActive(){
   return this->active;
 }
 
+/**
+ * @brief Returns the sensor type
+ * 
+ * @return std::string Sensor type 
+ */
 std::string Sensor::getType(){
   return this->type;
 }
 
+/**
+ * @brief Set the area of the sensor
+ * 
+ * @param area 
+ */
 void Sensor::setArea(std::string area){
   this->area = area;
 }
 
+/**
+ * @brief Returns the area of the sensor
+ * 
+ * @return std::string Area
+ */
 std::string Sensor::getArea(){
   return this->area;
 }
 
-std::vector<int> Sensor::requestData(){
-  this->data.clear();
-  int newVal = rand() % 50 - 10;
-  int med = newVal;
-  this->data.push_back(med);
-  for (int i = 0; i < 60 * this->valPerMin - 1; i++){
-    newVal = rand() % 50 - 10;
-    med = ( med + newVal ) / 2;
-    this->data.push_back(med);
-  }
-  
-  return this->data;
-}
-
+/**
+ * @brief Set the sensor data values magnitude
+ * 
+ * @param magnitude 
+ */
 void Sensor::setMagnitude(std::string magnitude){
   this->magnitude = magnitude;
 }
 
+/**
+ * @brief Returns the sensor magnitude
+ * 
+ * @return std::string Magnitude
+ */
 std::string Sensor::getMagnitude(){
   return this->magnitude;
 }
 
+/**
+ * @brief Set the number of values per min
+ * 
+ * @param valPerMin 
+ */
 void Sensor::setValPerMin(int valPerMin){
   if (valPerMin <= 0) return;
   this->valPerMin = valPerMin;
 }
 
+/**
+ * @brief Return the number of values per min
+ * 
+ * @return int Values per minute
+ */
 int Sensor::getValPerMin(){
   return this->valPerMin;;
 }

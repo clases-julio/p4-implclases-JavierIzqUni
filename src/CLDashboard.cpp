@@ -1,9 +1,19 @@
+/**
+ * @file CLDashboard.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "CLDashboard.h"
-#include "CLIUtils.h"
-#include "Dashboard.h"
-#include <stdio.h>
-#include <iostream>
 
+/**
+ * @brief Create a new Dashboard for the command line
+ * 
+ */
 CLDashboard::CLDashboard(){
   Sensor *sensor1 = Sensor::Create("thermometer");
   Sensor *sensor2 = Sensor::Create("humidity");

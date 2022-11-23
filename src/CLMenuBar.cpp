@@ -1,12 +1,21 @@
+/**
+ * @file CLMenuBar.cpp
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief 
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "CLMenuBar.h"
-#include "CLIUtils.h"
-#include "MenuBar.h"
-#include <stdio.h>
-#include <iostream>
 
-CLMenuBar::CLMenuBar(){
-}
+CLMenuBar::CLMenuBar(){}
 
+/**
+ * @brief Show the menu bar in the command line
+ * 
+ */
 void CLMenuBar::show(){
   std::cout << "\u001b[0;0H";
   printLeft("User: " + this->userName);

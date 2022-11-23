@@ -1,5 +1,15 @@
+/**
+ * @file CLDashboard.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of CLDashboard.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Dashboard.h"
-
+#include "CLIUtils.h"
 
 #ifndef CLDASHBOARD_H
 #define	CLDASHBOARD_H

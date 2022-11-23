@@ -30,9 +30,13 @@
 *.exe
 *.out
 *.app
+bin/*
+
+# Doxygen latex documentation
+doc/latex/*
 
 # Visual Studio settings
-*.json
+.vscode/*
 
 # Residual files
 terminalSize.txt

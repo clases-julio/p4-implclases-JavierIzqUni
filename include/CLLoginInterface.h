@@ -1,5 +1,15 @@
+/**
+ * @file CLLoginInterface.h
+ * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
+ * @brief Header file of CLLoginInterface.cpp
+ * @version 1.0
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "LoginInterface.h"
-
+#include "CLIUtils.h"
 
 #ifndef CLLOGININTERFACE_H
 #define	CLLOGININTERFACE_H
