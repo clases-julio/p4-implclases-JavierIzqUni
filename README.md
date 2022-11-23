@@ -8,8 +8,13 @@
 
 ## Compilation
 
-The code can be compiled with the provided makefile using the standard `make`
-command.
+The code can be compiled with the provided commands.
+```bash
+git clone https://github.com/clases-julio/p4-implclases-JavierIzqUni.git
+cd p4-implclases-JavierIzqUni
+chmod +x install
+./install
+```
 
 ## Documentation
 
