@@ -83,3 +83,4 @@ clean:
 
 run: all
 	./$(OUTPUTMAIN)
+	
