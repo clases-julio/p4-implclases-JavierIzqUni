@@ -1,5 +1,5 @@
 /**
- * @file main.cpp
+ * @file main.h
  * @author Javier Izquierdo (j.izquierdoh.2021@alumnos.urjc.es)
  * @brief Header file of main.cpp
  * @version 1.0
