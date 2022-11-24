@@ -17,13 +17,13 @@ cd p4-implclases-JavierIzqUni
 
 ## Documentation
 
-The documentation can be read from the following [pdf](/doc/refman.pdf) or in the following [link](/doc/html/index.html)
+The documentation can be read from the following [pdf](/doc/refman.pdf) or in the following [link](https://github.com/clases-julio/p4-implclases-JavierIzqUni/tree/main/doc/html)
 ## Sample Execution & Output
 
 If run without command line arguments, using
 
 ```
-bin/main
+build/main
 ```
 
 the program will start using the default configuration, using the command line interface.
@@ -32,7 +32,7 @@ the program will start using the default configuration, using the command line i
 If run using 
 
 ```
-bin/main <employee Number> <employee NIF>
+build/main <employee Number> <employee NIF>
 ```
 
 the program will try to log in with the passed arguments using the command line interface, if it fails the program will exit with an error

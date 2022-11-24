@@ -59,7 +59,7 @@ OBJECTS		:= $(SOURCES:.cpp=.o)
 # deleting dependencies appended to the file from 'make depend'
 #
 
-OUTPUTMAIN	:= $(call FIXPATH,bin/$(MAIN))
+OUTPUTMAIN	:= $(call FIXPATH,build/$(MAIN))
 
 all: $(OUTPUT) $(MAIN)
 	@echo Executing 'all' complete!
