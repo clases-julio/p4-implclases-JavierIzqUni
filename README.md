@@ -17,7 +17,7 @@ cd p4-implclases-JavierIzqUni
 
 ## Documentation
 
-The documentation can be read from the following [pdf](/doc/refman.pdf) or in the following [link](https://github.com/clases-julio/p4-implclases-JavierIzqUni/tree/main/doc/html/index.html)
+The documentation can be read from the following [pdf](/doc/refman.pdf).
 ## Sample Execution & Output
 
 If run without command line arguments, using
