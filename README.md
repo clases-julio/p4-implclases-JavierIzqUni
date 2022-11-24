@@ -17,7 +17,7 @@ cd p4-implclases-JavierIzqUni
 
 ## Documentation
 
-The documentation can be read from the following [pdf](/doc/refman.pdf)
+The documentation can be read from the following [pdf](/doc/refman.pdf) or in the following [link](/doc/html/index.html)
 ## Sample Execution & Output
 
 If run without command line arguments, using
