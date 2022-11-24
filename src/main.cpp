@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "Interface.h"
+#include "main.h"
 
 int main(int argc,char* argv[]){
   Interface *interfaceCli;
